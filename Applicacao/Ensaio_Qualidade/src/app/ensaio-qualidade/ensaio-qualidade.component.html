@@ -1,0 +1,35 @@
+<section class="card">
+    <h5 class="card-header">Visões de Qualidade para o Material: {{lote.descricao + ' - ' + lote.status}}</h5>
+    <div class="card-body">
+        <div class="col-md-6">
+            <h4>
+                {{metodologia.descricao}}
+            </h4>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Descrição</th>
+                    <th>Tipo</th>
+                    <th>Valor Nominal</th>
+                    <th>Limite Inferior</th>
+                    <th>Limite Superior</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let parametro of parametros">
+                    <td>{{parametro.id}}</td>
+                    <td>{{parametro.descricao}}</td>
+                    <td>{{parametro.tipo}}</td>
+                    <td>{{parametro.valoR_NOMINAL == 0 ? '-' : parametro.valoR_NOMINAL}}</td>
+                    <td>{{parametro.limitE_INFERIOR == 0 ? '-' : parametro.limitE_INFERIOR}}</td>
+                    <td>{{parametro.limitE_SUPERIOR == 0 ? '-' : parametro.limitE_SUPERIOR}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <app-modal-inserir-ensaio [parametrosQuestionario]="parametros"
+            [loteQuestionario]="lote.id"></app-modal-inserir-ensaio>
+    </div>
+
+</section>

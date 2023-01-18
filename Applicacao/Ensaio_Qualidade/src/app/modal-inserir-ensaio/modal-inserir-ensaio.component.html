@@ -1,0 +1,69 @@
+<!-- <hr /> -->
+<div>
+    <button type="button" class="btn btn-primary" (click)="openPopup()">Nova
+        Visão</button>
+    <div class="modal" tabindex="-1" role="dialog" aria-hidden="true" [ngStyle]="{'display':displayStyle}">
+        <div class="modal-dialog  modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Novo Ensaio de Qualidade por Lote</h4>
+                </div>
+
+                <div class="modal-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Caracteristica</th>
+                                <th>Valor</th>
+                                <th>Valor Nominal</th>
+                                <th>Referência</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-warning"
+                                *ngFor="let parametroQuantitativo of parametroQuantitativos, let i = index">
+                                <td>{{parametroQuantitativo.descricao}}</td>
+                                <td><input type="number" class="form-control" id="{{parametroQuantitativo.id}}"
+                                        placeholder="0.00" step=".01" /></td>
+                                <td>
+                                    {{parametroQuantitativo.valoR_NOMINAL == 0 ? '' :
+                                    parametroQuantitativo.valoR_NOMINAL}}
+                                </td>
+                                <td>
+                                    {{parametroQuantitativo.limitE_INFERIOR == 0 ? '' :
+                                    parametroQuantitativo.limitE_INFERIOR}} -
+                                    {{parametroQuantitativo.limitE_SUPERIOR == 0 ? '' :
+                                    parametroQuantitativo.limitE_SUPERIOR}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Descrição</th>
+                                <th>Justificativa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-warning" *ngFor="let parametroQualitativo of parametroQualitativos">
+                                <td>{{parametroQualitativo.descricao}}</td>
+                                <td>
+                                    <select class="form-control" id="{{parametroQualitativo.id}}">
+                                        <option value="true">Aprovado</option>
+                                        <option value="false">Reprovado</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success" (click)="salvarEnsaio()">Salvar</button>
+                    <button type="button" class="btn btn-danger" (click)="closePopup()">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
